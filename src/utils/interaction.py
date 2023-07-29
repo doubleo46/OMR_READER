@@ -37,8 +37,10 @@ class InteractionUtils:
             img = ImageUtils.resize_util(origin, config.dimensions.display_width)
         else:
             img = origin
-
-        cv2.imshow(name, img)
+        try:
+            cv2.imshow(name, img)
+        except:
+            return True
 
         if reset_pos:
             image_metrics.window_x = reset_pos[0]

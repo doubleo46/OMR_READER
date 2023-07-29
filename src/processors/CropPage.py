@@ -99,8 +99,14 @@ class CropPage(ImagePreprocessor):
         cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
         sheet = []
         for c in cnts:
+            logger.info(f"Area---------------------------{cv2.contourArea(c)}")
+            logger.info(f"MIN_PAGE_AREA---------------------------{MIN_PAGE_AREA}")
+            logger.info("_________________________________________________________")
             if cv2.contourArea(c) < MIN_PAGE_AREA:
+                logger.info("Pass")
                 continue
+            else:
+                logger.info("Process")
             peri = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, epsilon=0.025 * peri, closed=True)
             if validate_rect(approx):

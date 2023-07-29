@@ -26,9 +26,13 @@ class ImageUtils:
 
     @staticmethod
     def resize_util(img, u_width, u_height=None):
+        logger.info(f"**********************8888RESIzE img========================:{img}")
+        logger.info(f"RESIzE u_width========================:{u_width}")
+        logger.info(f"RESIzE u_height========================:{u_height}")
         if u_height is None:
             h, w = img.shape[:2]
             u_height = int(h * u_width / w)
+            logger.info("RETURN----------------------------")
         return cv2.resize(img, (int(u_width), int(u_height)))
 
     @staticmethod
